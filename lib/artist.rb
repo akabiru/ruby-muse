@@ -1,5 +1,6 @@
 class Artist
-	attr_accessor :name, :songs
+	attr_accessor :name
+	attr_reader :songs
 	@@all = []
 
 	def initialize name
@@ -24,9 +25,18 @@ class Artist
 		Artist.new(name).save
 	end
 
+	def songs=(song)
+		add_song song
+	end
+
 	def add_song song
 		@songs.push song unless @songs.include? song
 		song.artist = self unless song.artist
 	end
 
+	def genres
+		genres_ = []
+		@songs.each { |song| genres_.push song.genre unless genres_.include? song.genre }
+		genres_
+	end
 end

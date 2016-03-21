@@ -26,12 +26,18 @@ class Genre
 	end
 
 	def songs=(song)
+		add_song song
+	end
+
+	def add_song song 
 		@songs.push song unless @songs.include? song
 		song.genre = self unless song.genre
 	end
 
-	def add_song(song)
-		self.songs = song
+	def artists
+		artists_ = []
+		@songs.each { |song| artists_.push song.artist unless artists_.include? song.artist }
+		artists_
 	end
 
 end

@@ -26,14 +26,14 @@ class Song
 		Song.new(name).save
 	end
 
-	def artist=(song_artist)
-		@artist = song_artist
-		song_artist.add_song(self)
+	def artist=(artist_)
+		@artist = artist_
+		artist_.add_song self
 	end
 
-	def genre=(song_genre)
-		@genre = song_genre
-		song_genre.add_song(self)
+	def genre=(genre_)
+		@genre = genre_
+		genre_.add_song self
 	end
 
 end
