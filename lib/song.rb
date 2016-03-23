@@ -22,8 +22,8 @@ class Song
 		self
 	end
 
-	def self.create name
-		Song.new(name).save
+	def self.create name, artist = nil, genre = nil
+		Song.new(name, artist, genre).save
 	end
 
 	def artist=(artist_)
@@ -44,6 +44,17 @@ class Song
 		result = find_by_name name
 		result = create name unless result
 		result
+	end
+
+	def self.new_from_filename file_name
+		names = file_name.split(" - ").collect { |name| name.gsub(/.mp3/, '') }
+
+		artist = Artist.all.select { |a| a.name == names[0] }.first
+		artist = Artist.new names[0] if artist.nil?
+		genre = Genre.all.select { |g| g.name == names[2] }.first
+		genre = Genre.new names[2] if genre.nil?
+
+		Song.new(names[1], artist, genre)
 	end
 
 end

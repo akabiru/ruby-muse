@@ -8,8 +8,6 @@ class MusicImporter
 	end
 
 	def load_files path
-		files_ = []
-		Dir.glob(path + "/*.mp3").each { |f| files_.push File.basename f }
-		files_
+		Dir.glob(path + "/*.mp3").collect { |f| File.basename f }
 	end
 end
