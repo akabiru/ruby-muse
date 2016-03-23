@@ -57,4 +57,15 @@ class Song
 		Song.new(names[1], artist, genre)
 	end
 
+	def self.create_from_filename file_name
+		names = file_name.split(" - ").collect { |name| name.gsub(/.mp3/, '') }
+
+		artist = Artist.all.select { |a| a.name == names[0] }.first
+		artist = Artist.create names[0] if artist.nil?
+		genre = Genre.all.select { |g| g.name == names[2] }.first
+		genre = Genre.create names[2] if genre.nil?
+
+		Song.create(names[1], artist, genre)
+	end
+
 end
