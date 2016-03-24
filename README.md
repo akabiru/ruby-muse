@@ -1,8 +1,18 @@
 # Ruby Muse
-Ruby muse is a commande line tool for music library managment.
+A music library management cli tool.
 
-# How to use
-1. Run `git clone https://github.com/andela-akabiru/checkpoint-one-music-library.git`
-2. Change directory by running `cd checkpoint-one-music-library.git`
-3. Run `bundle install`
-4. Run `./bin/musiclibrary` to start the program
+# Getting Started
+1. `git clone https://github.com/andela-akabiru/checkpoint-one-music-library.git`
+2. `cd checkpoint-one-music-library.git`
+3. `bundle install`
+4. `./bin/musiclibrary` 
+
+# Usage
+Some basic commands include: 
+
+ - `list songs`
+ -  `list artists`
+ -  `list genres`
+ - `play song`
+ - `list artist`
+ - `list genre`

@@ -68,5 +68,6 @@ class MusicLibraryController
     print "4.) list genre # lists a particular genre\n"
     print "5.) list artist # lists a particular artist\n"
     print "6.) play song # play a particular song\n\n"
+    print "exit # quit Ruby Muse\n\n"
   end
 end
