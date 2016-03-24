@@ -1,11 +1,9 @@
 module Concerns::Findable
 	def find_by_name name
-		self.all.select { |song| song.name == name }.first
+		self.all.find { |s| s.name == name }
 	end
 
 	def find_or_create_by_name name
-		result = find_by_name name
-		result = create name unless result
-		result
+		find_by_name(name) || create(name)
 	end
 end
