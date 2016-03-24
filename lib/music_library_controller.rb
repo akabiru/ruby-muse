@@ -8,11 +8,14 @@ class MusicLibraryController
   end
 
   def call
-    print "-------- Ruby Muse --------\n"
+    print "|-------- Ruby Muse --------|\n"
     print "\n Commands\n"
     command_helper
-    while variable = gets.chomp
-      case variable
+    user_input = ''
+    while user_input != "exit"
+      print "@~ "
+      user_input = gets.chomp
+      case user_input
       when 'list songs'
         @music_importer.files.each.with_index(1) do |v, i|
           puts i.to_s + '. ' + v
@@ -24,25 +27,33 @@ class MusicLibraryController
           puts g.split(' - ')[2].sub(/.mp3/, '')
         end
       when 'play song'
-        print 'which number? '
+        print "  => which number? "
         num = gets.chomp
         puts 'Playing ' + @music_importer.files[num.to_i - 1].sub(/.mp3/, '')
       when 'list artist'
-        print 'artist name: '
+        print "  => artist name: "
         name = gets.chomp
-        @music_importer.files.each do |f|
-          puts f if name == f.split(' - ').first
+        found =
+          @music_importer.files.select { |f| name == f.split(' - ').first }
+        if found.size > 0
+          found.each { |f| puts f }
+        else
+          puts "#{name} not found."
         end
       when 'list genre'
-        print 'genre name: '
+        print "  => genre name: "
         name = gets.chomp
-        @music_importer.files.each do |f|
-          puts f if name == f.split(' - ')[2].sub(/.mp3/, '')
+        found =
+          @music_importer.files.select do |f|
+            name == f.split(' - ')[2].sub(/.mp3/, '')
+          end
+        if found.size > 0
+          found.each { |f| puts f }
+        else
+          puts "#{name} not found."
         end
       when 'help'
         command_helper
-      when 'exit'
-        break
       else
         print "\nOops, your command is invalid. Try these:\n\n"
         command_helper
