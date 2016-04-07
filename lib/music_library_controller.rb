@@ -52,12 +52,6 @@ class MusicLibraryController
       "
   end
 
-  def all_songs
-    Song.all.each do |song|
-      yield song
-    end
-  end
-
   def list_songs
     Song.all.each.with_index(1) do |song, idx|
       puts "#{idx}. #{song}".colorize(:light_blue)
@@ -65,11 +59,15 @@ class MusicLibraryController
   end
 
   def list_genres
-    all_songs { |song| puts song.genre.name.colorize(:light_blue) }
+    Song.all.uniq(&:genre).each do |song|
+      puts song.genre.to_s.colorize(:light_blue)
+    end
   end
 
   def list_artists
-    all_songs { |song| puts song.artist.name.colorize(:light_blue) }
+    Song.all.uniq(&:artist).each do |song|
+      puts song.artist.to_s.colorize(:light_blue)
+    end
   end
 
   def play_song
