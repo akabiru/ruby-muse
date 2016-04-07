@@ -41,8 +41,8 @@ class Song
   def self.new_from_filename(file_name)
     names = file_name.sub(/.mp3/, '').split(' - ')
     Song.new(names[1],
-                Artist.find_or_create_by_name(names[0]),
-                Genre.find_or_create_by_name(names[2]))
+             Artist.find_or_create_by_name(names[0]),
+             Genre.find_or_create_by_name(names[2]))
   end
 
   def self.create_from_filename(file_name)
@@ -50,5 +50,9 @@ class Song
     Song.create(names[1],
                 Artist.find_or_create_by_name(names[0]),
                 Genre.find_or_create_by_name(names[2]))
+  end
+
+  def to_s
+    "#{self.artist.name} - #{self.name} - #{self.genre.name}"
   end
 end

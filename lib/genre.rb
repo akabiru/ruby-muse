@@ -43,4 +43,8 @@ class Genre
     end
     artists_
   end
+
+  def to_s
+    "#{self.name}"
+  end
 end
